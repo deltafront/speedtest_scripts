@@ -1,3 +1,6 @@
+# Speedtest project
+
+
 ## Prerequisites
 
 In order to run this project, you will need  the following
@@ -17,9 +20,16 @@ You will need the following python packages:
 *   [speedtest-cli](https://github.com/sivel/speedtest-cli)
 *   [dropbox](https://www.dropbox.com/developers-v1/core/sdks/python)
 *   [pymongo](http://api.mongodb.com/python/current/installation.html?_ga=1.263110350.371206641.1464658656)
-*   [openpyxl](https://openpyxl.readthedocs.io/en/default/)
 
 
 For each of these, installing them should be as easy as running `pip  install {package_name}`
 
 If you do not have pip installed, please go [here](https://pip.pypa.io/en/stable/installing/) and follow the instructions
+
+## Running the scripts
+
+First of all, you will need to get a Dropbox account and obtain a developers key, which will need to be placed in a file called 'keys.py'
+
+*   In order to register for a Dropbox account, go here.
+*   In order to get an API key for your Dropbox account, go here.
+*   Copy and paste keys.bak.py to a file called `keys.py`
