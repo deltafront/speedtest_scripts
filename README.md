@@ -3,7 +3,17 @@
 
 ## Prerequisites
 
-In order to run this project, you will need  the following
+In order to run this project, you will need  the following:
+
+### GIT Client
+
+You will need a git command line client in order to clone this repository onto your computer. A good place to start looking for one to download and install would be [here](https://git-scm.com/downloads)
+
+### This repository
+
+Once you have a command-line client install, open up a terminal / command window, navigate to the folder you want this project to be in, and type in the following:
+
+`git clone https://github.com/deltafront/speedtest_scripts.git`
 
 ### Python
 
@@ -33,3 +43,22 @@ First of all, you will need to get a Dropbox account and obtain a developers key
 *   In order to register for a Dropbox account, go [here](https://www.dropbox.com/).
 *   In order to get an API key for your Dropbox account, go here.
 *   Copy and paste [keys.bak.py](https://github.com/deltafront/speedtest_scripts/blob/master/keys.bak.py) to a file called `keys.py` and then enter the key that you obtained in the step above.
+*   In [configs.py](https://github.com/deltafront/speedtest_scripts/blob/master/configs.py), you can change several of the settings. Please consult that file directly in order to view your options.
+
+Once the above steps have been done, I would recommend a test run. Go to the directory in which you have cloned this project and run the following command:
+
+`python speedtest.py`
+
+The following things should happen:
+
+## Getting the script to run automatically
+
+Once you have verified that the speedtest script works, you will need to add this script to your crontab in order for it to run on a regular basis by itself.
+
+I would recommend that this script is executed on an hourly basis. Edit your crontab so that, for example, the following entry is added:
+
+`0 * * * * python /Users/charlie/PycharmProjects/speedtest_scripts/speedtest.py`
+
+The path `/Users/charlie/PycharmProjects/` is where my `speedtest-scripts` repo has been clones to; most likely yours will be in a different place.
+
+This will cause the script to be executed every hour on the hour. If you want to change it, I would recommend using a tool such as the one found [here](http://crontab-generator.org/).
