@@ -3,3 +3,4 @@ keys.py
 *.csv
 *.json
 __pycache__
+./idea/scopes/*.*
