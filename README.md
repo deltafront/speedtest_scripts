@@ -30,6 +30,6 @@ If you do not have pip installed, please go [here](https://pip.pypa.io/en/stable
 
 First of all, you will need to get a Dropbox account and obtain a developers key, which will need to be placed in a file called 'keys.py'
 
-*   In order to register for a Dropbox account, go here.
+*   In order to register for a Dropbox account, go [here](https://www.dropbox.com/).
 *   In order to get an API key for your Dropbox account, go here.
-*   Copy and paste keys.bak.py to a file called `keys.py`
+*   Copy and paste [keys.bak.py](https://github.com/deltafront/speedtest_scripts/blob/master/keys.bak.py) to a file called `keys.py` and then enter the key that you obtained in the step above.
