@@ -11,6 +11,22 @@ Date-Time format that will be used in the CSV file. Do not change.
 '''
 spreadsheet_date_time_format = '%Y-%m-%d %H:%M:%S'
 '''
+Date-Time format that will be used in the email.
+'''
+email_date_time_format = '%d %B, %Y %H:%M:%S'
+'''
+Sender's email address. Please replace this with your own!
+'''
+sender_email_address = 'companyB@metrics-emailer.appspotmail.com'
+'''
+Recipient's email address. Please replace this with your own!
+'''
+recipient_email_address = 'deltafront@gmail.com'
+'''
+Email endpoint for Google App Engine. Please replace this with your own!
+'''
+emailer_api_endpoint = 'https://metrics-emailer.appspot.com'
+'''
 Location that all of the speedtest files will be written to. By default this is set to a folder named
 "logs/speedtest/" in the user's home directory. This can be changed.
  '''

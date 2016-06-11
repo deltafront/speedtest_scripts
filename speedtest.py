@@ -1,8 +1,10 @@
 from dropbox.files import WriteMode
 from cleanup_utils import clean_dir
-from configs import speedtest_file_loc, workbook_name, dropbox_file_name
+from configs import speedtest_file_loc, workbook_name, dropbox_file_name, email_date_time_format
 from dropbox_utils import upload_to_dropbox, get_file_from_dropbox
+from emailer import ping_service, construct_request_body, send_email_request
 from speedtest_utils import make_directories, get_speedtest_file_name, get_output, generate_json_data, generate_csv_data
+from utils import get_timestamp
 
 __author__ = 'charlie'
 import os
@@ -47,8 +49,14 @@ def main():
         f.close()
         write_mode = WriteMode.overwrite
     print('Uploading workbook to Dropbox.')
-    upload_to_dropbox(workbook_name, dropbox_file_name,write_mode=write_mode)
-    print('Inserting data into Mongo.')
+    upload_to_dropbox(workbook_name, dropbox_file_name, write_mode=write_mode)
+    print('Inserting data into Mongo.(TODO)')
+    print('Pinging service in order to send email.')
+    if ping_service():
+        print('Sending email')
+        email_timestamp = get_timestamp(dt_format=email_date_time_format)
+        request_mapping = construct_request_body(email_timestamp,ping, upload, download, share_results)
+        send_email_request(request_mapping)
     print('Cleaning up.')
     clean_dir(speedtest_file_loc)
     print('Done.')

@@ -30,11 +30,35 @@ You will need the following python packages:
 *   [speedtest-cli](https://github.com/sivel/speedtest-cli)
 *   [dropbox](https://www.dropbox.com/developers-v1/core/sdks/python)
 *   [pymongo](http://api.mongodb.com/python/current/installation.html?_ga=1.263110350.371206641.1464658656)
+*   [requests](http://docs.python-requests.org/en/master/)
 
 
 For each of these, installing them should be as easy as running `pip  install {package_name}`
 
 If you do not have pip installed, please go [here](https://pip.pypa.io/en/stable/installing/) and follow the instructions
+
+### Download and setup the emailer service
+
+If you want emails sent to you everytime a speedtest run has been executed, you will need to do the following:
+
+*   Install the Google App Engine SDK for Python.
+    *   Run `pip install appengine`
+    *   Add the following to your path:
+        *   ~google_appengine
+        *   ~google_appengine/lib
+        *   ~google_appengine/lib/yaml
+    *   Setup a Google App Engine project
+        *   This is pretty easy, assuming you have a Google Account. I would recommend following the steps listed underneath "Before You Begin" [here](https://cloud.google.com/appengine/docs/python/gettingstartedpython27/creating-guestbook#objectives)
+    *   Get the code for the Emailer Service
+        *   Clone the project at ``
+    *   Set up your custom configurations
+        *   In your `keys.py` file in this project, copy the `api_key` value that you specified in the `configs.py` file in your local copy of the Emailer Service to the `emailer_api_key`
+        *   In your copy of [configs.py](https://github.com/deltafront/speedtest_scripts/blob/master/configs.py), make the following changes:
+            *   `sender_email_address` - change this so that the part after the `@` matches your App Engine's Application name + `.appspotmail.com`
+            *   `recipient_email_address` - change this, please and don't use mine :)
+            *   `emailer_api_endpoint` - change this to match your App Engine's Application name
+    *   Upload the service
+        *   In your command line / terminal, navigate to where you have cloned the Emailer Service and run the command specified in the [notes]() file.
 
 ## Running the scripts
 
