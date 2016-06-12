@@ -1,8 +1,10 @@
+import json
 from dropbox.files import WriteMode
 from cleanup_utils import clean_dir
 from configs import speedtest_file_loc, workbook_name, dropbox_file_name, email_date_time_format
 from dropbox_utils import upload_to_dropbox, get_file_from_dropbox
 from emailer import ping_service, construct_request_body, send_email_request
+from mongo_utils import save_to_mongo
 from speedtest_utils import make_directories, get_speedtest_file_name, get_output, generate_json_data, generate_csv_data
 from utils import get_timestamp
 
@@ -37,20 +39,22 @@ def main():
     csv_file = get_file_from_dropbox(dropbox_file_name)
     write_mode = WriteMode.add
     if csv_file is None:
+        csv_file = workbook_name
         print("Creating new CSV file.")
-        f = open(workbook_name, 'w')
+        f = open(csv_file, 'w')
         f.write(csv_data[0])
         f.write(csv_data[1])
         f.close()
     else:
         print("Appending existing file.")
-        f = open(workbook_name, 'a')
+        f = open(csv_file, 'a')
         f.write(csv_data[1])
         f.close()
         write_mode = WriteMode.overwrite
     print('Uploading workbook to Dropbox.')
-    upload_to_dropbox(workbook_name, dropbox_file_name, write_mode=write_mode)
-    print('Inserting data into Mongo.(TODO)')
+    upload_to_dropbox(csv_file, dropbox_file_name, write_mode=write_mode)
+    print('Inserting data into Mongo.')
+    save_to_mongo([json.loads(json_data)])
     print('Pinging service in order to send email.')
     if ping_service():
         print('Sending email')

@@ -29,15 +29,20 @@ def get_file_from_dropbox(destination_file_name):
     dbx = connect()
     try:
         md, res = dbx.files_download(destination_file_name)
-        file_out = res
+        file_out = '%s.returned' % destination_file_name
+        file_out = file_out.replace('/', '')
         if res is not None:
-            print('Returning file: %s\n%s\Md=%s' % (destination_file_name, res.content, md))
+            content = res.content.decode('utf-8')
+            print('Returning file: %s\n%s\Md=%s' % (destination_file_name, content, md))
+            f = open(file_out, 'w')
+            f.write(content)
+            f.close()
+            res.close()
     except ApiError as le:
         file_out = None
         print(le)
+    print('Returning path to downloaded file: %s' % file_out)
     return file_out
-
-
 
 
 class DropboxUtilsTest(TestCase):
@@ -54,3 +59,6 @@ class DropboxUtilsTest(TestCase):
         self.assertIsNotNone(sharing_info)
         f = get_file_from_dropbox('/test.txt')
         self.assertIsNotNone(f)
+        self.assertEqual('test.txt.returned', f)
+        contents = open(f,'r').read()
+        self.assertEqual('this is some text', contents)
