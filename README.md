@@ -31,6 +31,8 @@ You will need the following python packages:
 *   [dropbox](https://www.dropbox.com/developers-v1/core/sdks/python)
 *   [pymongo](http://api.mongodb.com/python/current/installation.html?_ga=1.263110350.371206641.1464658656)
 *   [requests](http://docs.python-requests.org/en/master/)
+*   [pytz](http://pytz.sourceforge.net/)
+*   [iso8601](https://pypi.python.org/pypi/iso8601)
 
 
 For each of these, installing them should be as easy as running `pip  install {package_name}`

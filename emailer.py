@@ -7,10 +7,10 @@ from keys import emailer_api_key
 __author__ = 'charlie'
 
 
-def construct_request_body(timestamp, ping, upload, download, share_results):
+def construct_request_body(timestamp, ping, upload, download, share_results, type_='speedtest'):
     return {
-        'type':'speedtest',
-        'from': sender_email_address,
+        'type': type_,
+        'from': sender_email_address.replace('{type}', type_),
         'to': recipient_email_address,
         'timestamp': timestamp,
         'attributes': {

@@ -1,7 +1,9 @@
+from datetime import datetime
 import json
+from pytz import timezone
 from dropbox.files import WriteMode
 from cleanup_utils import clean_dir
-from configs import speedtest_file_loc, workbook_name, dropbox_file_name, email_date_time_format
+from configs import speedtest_file_loc, workbook_name, dropbox_file_name, email_date_time_format, default_timezone
 from dropbox_utils import upload_to_dropbox, get_file_from_dropbox
 from emailer import ping_service, construct_request_body, send_email_request
 from mongo_utils import save_to_mongo
@@ -59,7 +61,7 @@ def main():
     if ping_service():
         print('Sending email')
         email_timestamp = get_timestamp(dt_format=email_date_time_format)
-        request_mapping = construct_request_body(email_timestamp,ping, upload, download, share_results)
+        request_mapping = construct_request_body(email_timestamp,ping, upload, download, share_results, type_='speedtest')
         send_email_request(request_mapping)
     print('Cleaning up.')
     clean_dir(speedtest_file_loc)

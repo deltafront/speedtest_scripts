@@ -17,7 +17,7 @@ email_date_time_format = '%d %B, %Y %H:%M:%S'
 '''
 Sender's email address. Please replace this with your own!
 '''
-sender_email_address = 'companyB@metrics-emailer.appspotmail.com'
+sender_email_address = 'companyB.{type}@metrics-emailer.appspotmail.com'
 '''
 Recipient's email address. Please replace this with your own!
 '''
@@ -47,3 +47,7 @@ workbook_name = 'speedtest.csv'
 Name of the CSV file uploaded to Dropbox
 '''
 dropbox_file_name = '/speedtest.csv'
+'''
+Timezone used for Metrics timestamps
+'''
+default_timezone = 'America/Los_Angeles'

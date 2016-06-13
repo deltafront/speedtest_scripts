@@ -1,7 +1,9 @@
+from datetime import datetime
+from pytz import timezone
 import json
 import os
 from unittest import TestCase
-from configs import speedtest_file_loc, spreadsheet_date_time_format
+from configs import speedtest_file_loc, spreadsheet_date_time_format, default_timezone
 from utils import get_timestamp
 
 __author__ = 'charlie'
@@ -69,6 +71,7 @@ def get_output(path_to_file):
 
 def generate_json_data(timestamp, ping, upload, download, share_results):
     mapping = {'name': 'speedtest',
+               'timestamp': datetime.now(tz=timezone(default_timezone)).isoformat(),
                 'attributes': {
                     'timestamp': str(timestamp),
                     'ping': float(ping),
